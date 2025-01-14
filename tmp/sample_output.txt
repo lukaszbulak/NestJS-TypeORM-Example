@@ -1,0 +1,38 @@
+$ npx appmap-node nest start
+(Λ) Running with appmap-node version 2.24.3
+(Λ) Writing default config to C:\xxxx\NestJS-TypeORM-Example\appmap.yml
+(Λ) Empty source: file:///C:/xxxxx/NestJS-TypeORM-Example/dist/src/main.js
+[Nest] 28952   - 14.01.2025, 21:52:30   [NestFactory] Starting Nest application...
+[Nest] 28952   - 14.01.2025, 21:52:30   [InstanceLoader] AppModule dependencies initialized +56ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+query: BEGIN TRANSACTION
+query: SELECT * FROM "sqlite_master" WHERE "type" = 'table' AND "name" IN ('users', 'boards')
+query: SELECT * FROM "sqlite_master" WHERE "type" = 'index' AND "tbl_name" IN ('users', 'boards')
+query: SELECT * FROM "sqlite_master" WHERE "type" = 'table' AND "name" = 'typeorm_metadata'
+query: CREATE TABLE "users" ("user_id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar NOT NULL, "email" varchar NOT NULL, "password" varchar NOT NULL, CONSTRAINT "UQ_97672ac88f789774dd47f7c8be3" UNIQUE ("email"))
+query: CREATE TABLE "boards" ("board_id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(400) NOT NULL, "content" varchar(1000) NOT NULL, "created_at" datetime NOT NULL DEFAULT (datetime('now')), "last_modified_at" datetime NOT NULL DEFAULT (datetime('now')), "user_id" integer)
+query: CREATE TABLE "temporary_boards" ("board_id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(400) NOT NULL, "content" varchar(1000) NOT NULL, "
+created_at" datetime NOT NULL DEFAULT (datetime('now')), "last_modified_at" datetime NOT NULL DEFAULT (datetime('now')), "user_id" integer, CONSTRAINT "FK_a235c3aff3d3d4b91eaa3a7c338" FOREIGN KEY ("user_id") REFERENCES "users" ("user_id") ON DELETE NO ACTION ON UPDATE NO ACTION)
+query: INSERT INTO "temporary_boards"("board_id", "title", "content", "created_at", "last_modified_at", "user_id") SELECT "board_id", "title", "content", "created_at", "last_modified_at", "user_id" FROM "boards"
+query: DROP TABLE "boards"
+query: ALTER TABLE "temporary_boards" RENAME TO "boards"
+query: COMMIT
+[Nest] 28952   - 14.01.2025, 21:52:30   [InstanceLoader] TypeOrmCoreModule dependencies initialized +88ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [InstanceLoader] TypeOrmModule dependencies initialized +0ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [InstanceLoader] BoardModule dependencies initialized +3ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [InstanceLoader] UserModule dependencies initialized +2ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [RoutesResolver] UserController {/user}: +9ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [RouterExplorer] Mapped {/user, POST} route +4ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [RouterExplorer] Mapped {/user/:userId, GET} route +1ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [RouterExplorer] Mapped {/user/:userId, PUT} route +1ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [RouterExplorer] Mapped {/user/:userId, DELETE} route +0ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [RouterExplorer] Mapped {/user/login, POST} route +1ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [RouterExplorer] Mapped {/user/board/:userId, POST} route +0ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [RouterExplorer] Mapped {/user/board/:userId/:boardId, PATCH} route +0ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [RouterExplorer] Mapped {/user/board/:userId/:boardId, DELETE} route +1ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [RoutesResolver] BoardController {/board}: +0ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [RouterExplorer] Mapped {/board/:boardId, GET} route +1ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [RouterExplorer] Mapped {/board, GET} route +0ms
+[Nest] 28952   - 14.01.2025, 21:52:30   [NestApplication] Nest application successfully started +2ms
+query: SELECT "Board"."board_id" AS "Board_board_id", "Board"."title" AS "Board_title", "Board"."content" AS "Board_content", "Board"."created_at" AS "Board_created_at", "Board"."last_modified_at" AS "Board_last_modified_at", "Board"."user_id" AS "Board_user_id", "Board__user"."user_id" AS "Board__user_user_id", "Board__user"."name" AS "Board__user_name", "Board__user"."email" AS "Board__user_email", "Board__user"."password" AS "Board__user_password" FROM "boards" "Board" LEFT JOIN "users" "Board__user" ON "Board__user"."user_id"="Board"."user_id"
+(Λ) Wrote C:\xxxxx\NestJS-TypeORM-Example\tmp\appmap\requests\2025-01-14T20-52-43.748Z_-board.appmap.json
