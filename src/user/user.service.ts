@@ -59,7 +59,7 @@ export class UserService {
     if (extractUserId(token) !== userId) {
       throw new ForbiddenException('Not authorized to get this user info.');
     }
-    const user = await this.userRepository.findOne(userId);
+    const user = await this.userRepository.findOne({ where: { getUser_id: userId} });
     if (!!user) {
       return new UserInfoResponseDto(user);
     } else throw new NotFoundException();
@@ -99,8 +99,8 @@ export class UserService {
     const password = dto.password;
     const user = await this.userRepository.findOne({
       where: {
-        email: email,
-        password: password,
+        getEmail: email,
+        getPassword: password,
       },
     });
     if (!!user) {

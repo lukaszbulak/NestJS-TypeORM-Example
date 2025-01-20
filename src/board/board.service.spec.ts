@@ -48,7 +48,7 @@ describe('BoardService Logic test', () => {
     board.setTitle = TITLE;
     board.user = savedUser;
     await boardRepository.save(board);
-    return userRepository.findOne(savedUser.getUser_id, {
+    return userRepository.findOne({ where: {getUser_id: savedUser.getUser_id},
       relations: ['boards'],
     });
   };
@@ -62,7 +62,7 @@ describe('BoardService Logic test', () => {
       board.user = savedUser;
       await boardRepository.save(board);
     }
-    return userRepository.findOne(savedUser.getUser_id, {
+    return userRepository.findOne({ where: {getUser_id: savedUser.getUser_id},
       relations: ['boards'],
     });
   };
@@ -107,7 +107,7 @@ describe('BoardService Logic test', () => {
     expect(result.userId).toBe(savedUser.getUser_id);
     expect(result.name).toBe(savedUser.getName);
 
-    const savedBoard = await boardRepository.findOne(result.boardId, {
+    const savedBoard = await boardRepository.findOne({ where: {getBoard_id: result.boardId},
       relations: ['user'],
     });
     expect(savedBoard.getBoard_id).toBe(result.boardId);
@@ -175,7 +175,7 @@ describe('BoardService Logic test', () => {
       userId,
       boardId,
     );
-    const updatedBoard = await boardRepository.findOne(boardId);
+    const updatedBoard = await boardRepository.findOne({where: {getBoard_id: boardId}});
     expect(updatedBoard.getBoard_id).toBe(boardId);
     expect(updatedBoard.getContent).toBe('NEW_CONTENT');
     expect(updatedBoard.getTitle).toBe(TITLE);
@@ -194,7 +194,7 @@ describe('BoardService Logic test', () => {
       userId,
       boardId,
     );
-    const updatedBoard = await boardRepository.findOne(boardId);
+    const updatedBoard = await boardRepository.findOne({where: {getBoard_id: boardId}});
     expect(updatedBoard.getBoard_id).toBe(boardId);
     expect(updatedBoard.getContent).toBe(CONTENT);
     expect(updatedBoard.getTitle).toBe('NEW_TITLE');
@@ -213,7 +213,7 @@ describe('BoardService Logic test', () => {
       userId,
       boardId,
     );
-    const updatedBoard = await boardRepository.findOne(boardId);
+    const updatedBoard = await boardRepository.findOne({where: {getBoard_id: boardId}});
     expect(updatedBoard.getBoard_id).toBe(boardId);
     expect(updatedBoard.getContent).toBe('NEW_CONTENT');
     expect(updatedBoard.getTitle).toBe('NEW_TITLE');
@@ -330,7 +330,7 @@ describe('BoardService Logic test', () => {
       savedUser.getUser_id,
       boardId,
     );
-    const board = await boardRepository.findOne(boardId);
+    const board = await boardRepository.findOne({where: {getBoard_id: boardId}});
     expect(board).toBeUndefined();
   });
 

@@ -65,7 +65,7 @@ describe('UserService Logic Test', () => {
     expect(responseDto.email).toBe(EMAIL);
     expect(typeof responseDto.user_id).toBe('number');
 
-    const savedUser = await userRepository.findOne(responseDto.user_id);
+    const savedUser = await userRepository.findOne({ where:{getUser_id: responseDto.user_id} });
 
     expect(savedUser.getUser_id).toBe(responseDto.user_id);
     expect(savedUser.getName).toBe(responseDto.name);
@@ -149,7 +149,7 @@ describe('UserService Logic Test', () => {
 
     expect(response).toBeInstanceOf(BasicMessageDto);
 
-    const updatedUser = await userRepository.findOne(savedUser.getUser_id);
+    const updatedUser = await userRepository.findOne({ where:{getUser_id: savedUser.getUser_id} });
     expect(updatedUser.getName).toBe('NEW_NAME');
     expect(updatedUser.getPassword).toBe('NEW_PASSWORD');
   });
@@ -167,7 +167,7 @@ describe('UserService Logic Test', () => {
     );
     expect(response).toBeInstanceOf(BasicMessageDto);
 
-    const updatedUser = await userRepository.findOne(savedUser.getUser_id);
+    const updatedUser = await userRepository.findOne({ where:{getUser_id: savedUser.getUser_id} });
     expect(updatedUser.getName).toBe('NEW_NAME');
     expect(updatedUser.getPassword).toBe(PASSWORD);
   });
@@ -185,7 +185,7 @@ describe('UserService Logic Test', () => {
     );
     expect(response).toBeInstanceOf(BasicMessageDto);
 
-    const updatedUser = await userRepository.findOne(savedUser.getUser_id);
+    const updatedUser = await userRepository.findOne({ where:{getUser_id: savedUser.getUser_id} });
     expect(updatedUser.getName).toBe(NAME);
     expect(updatedUser.getPassword).toBe('NEW_PASSWORD');
   });
@@ -246,7 +246,7 @@ describe('UserService Logic Test', () => {
     );
     expect(response).toBeInstanceOf(BasicMessageDto);
 
-    const user = await userRepository.findOne(savedUser.getUser_id);
+    const user = await userRepository.findOne({ where:{getUser_id: savedUser.getUser_id} });
     expect(user).toBeUndefined();
   });
 

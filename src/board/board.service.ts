@@ -37,7 +37,7 @@ export class BoardService {
         'userId in parameter and token is different.',
       );
     }
-    const user = await this.userRepository.findOne(userId);
+    const user = await this.userRepository.findOne( { where:{getUser_id: userId}});
     if (!!user) {
       const board = new Board();
       board.setContent = dto.content;
@@ -57,7 +57,7 @@ export class BoardService {
     if (userId !== extractUserId(token)) {
       throw new ForbiddenException('userId in paramter and token is different');
     }
-    const user = await this.userRepository.findOne(userId, {
+    const user = await this.userRepository.findOne({ where: { getUser_id: userId },
       relations: ['boards'],
     });
     if (!!user) {
@@ -91,7 +91,7 @@ export class BoardService {
         'userId in parameter and token is different',
       );
     }
-    const user = await this.userRepository.findOne(userId, {
+    const user = await this.userRepository.findOne({where: {getUser_id: userId},
       relations: ['boards'],
     });
     if (!!user) {
@@ -111,7 +111,7 @@ export class BoardService {
   }
 
   async getByBoardId(boardId: number): Promise<BoardInfoResponseDto> {
-    const board = await this.boardRepository.findOne(boardId, {
+    const board = await this.boardRepository.findOne( {where: { getBoard_id: boardId},
       relations: ['user'],
     });
     if (!!board) {
