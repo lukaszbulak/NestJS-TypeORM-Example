@@ -49,7 +49,7 @@ describe('UserController (e2e)', () => {
   };
 
   const assertThatBoardIsNotSaved = async (userId: number): Promise<void> => {
-    const checkUser = await userRepository.findOne(userId, {
+    const checkUser = await userRepository.findOne({ where: {getUser_id: userId},
       relations: ['boards'],
     });
     expect(checkUser.boards.length).toBe(0);
@@ -62,7 +62,7 @@ describe('UserController (e2e)', () => {
     board.setTitle = TITLE;
     board.user = savedUser;
     await boardRepository.save(board);
-    return userRepository.findOne(savedUser.getUser_id, {
+    return userRepository.findOne( { where: {getUser_id: savedUser.getUser_id},
       relations: ['boards'],
     });
   };
@@ -225,7 +225,7 @@ describe('UserController (e2e)', () => {
       .send(updateDto);
 
     expect(result.status).toBe(HttpStatus.OK);
-    const updatedUser = await userRepository.findOne(userId);
+    const updatedUser = await userRepository.findOne( { where: {getUser_id: userId} });
     expect(updatedUser.getName).toBe('NEW_NAME');
     expect(updatedUser.getPassword).toBe('NEW_PASSWORD');
   });
@@ -252,7 +252,7 @@ describe('UserController (e2e)', () => {
       .send(updateDto);
     expect(result.status).toBe(HttpStatus.FORBIDDEN);
 
-    const updatedUser = await userRepository.findOne(userId);
+    const updatedUser = await userRepository.findOne({ where: {getUser_id: userId}});
     expect(updatedUser.getName).toBe(NAME);
     expect(updatedUser.getPassword).toBe(PASSWORD);
   });
@@ -291,7 +291,7 @@ describe('UserController (e2e)', () => {
       .set('authorization', `Bearer ${token}`);
     expect(result.status).toBe(HttpStatus.OK);
 
-    expect(await userRepository.findOne(userId)).toBeUndefined();
+    expect(await userRepository.findOne({ where: {getUser_id: userId}})).toBeUndefined();
   });
 
   it('[DELETE] /user/{userId} : Response is BAD_REQUEST if authorization header is missing', async () => {
@@ -403,7 +403,7 @@ describe('UserController (e2e)', () => {
       .send(dto);
 
     expect(result.status).toBe(HttpStatus.OK);
-    const updatedBoard = await boardRepository.findOne(boardId);
+    const updatedBoard = await boardRepository.findOne({ where: {getBoard_id: boardId}});
     expect(updatedBoard.getBoard_id).toBe(boardId);
     expect(updatedBoard.getContent).toBe('NEW_CONTENT');
     expect(updatedBoard.getTitle).toBe('NEW_TITLE');

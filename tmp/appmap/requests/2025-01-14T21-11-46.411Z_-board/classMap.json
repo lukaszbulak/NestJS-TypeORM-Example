@@ -1,0 +1,52 @@
+[
+  {
+    "name": "board",
+    "type": "package",
+    "children": [
+      {
+        "type": "class",
+        "name": "BoardController",
+        "children": [
+          {
+            "type": "function",
+            "name": "getBoards",
+            "static": false,
+            "location": "src\\board\\board.controller.ts:18"
+          }
+        ]
+      },
+      {
+        "type": "class",
+        "name": "BoardService",
+        "children": [
+          {
+            "type": "function",
+            "name": "getBoards",
+            "static": false,
+            "location": "src\\board\\board.service.ts:116"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "http",
+    "name": "HTTP server requests",
+    "children": [
+      {
+        "type": "route",
+        "name": "GET /board"
+      }
+    ]
+  },
+  {
+    "type": "database",
+    "name": "Database",
+    "children": [
+      {
+        "type": "query",
+        "name": "SELECT \"Board\".\"board_id\" AS \"Board_board_id\", \"Board\".\"title\" AS \"Board_title\", \"Board\".\"content\" AS \"Board_content\", \"Board\".\"created_at\" AS \"Board_created_at\", \"Board\".\"last_modified_at\" AS \"Board_last_modified_at\", \"Board\".\"user_id\" AS \"Board_user_id\", \"Board__user\".\"user_id\" AS \"Board__user_user_id\", \"Board__user\".\"name\" AS \"Board__user_name\", \"Board__user\".\"email\" AS \"Board__user_email\", \"Board__user\".\"password\" AS \"Board__user_password\" FROM \"boards\" \"Board\" LEFT JOIN \"users\" \"Board__user\" ON \"Board__user\".\"user_id\"=\"Board\".\"user_id\""
+      }
+    ]
+  }
+]

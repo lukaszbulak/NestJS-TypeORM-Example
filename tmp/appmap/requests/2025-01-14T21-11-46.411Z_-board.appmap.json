@@ -1,0 +1,209 @@
+{
+  "events": [
+    {
+      "event": "call",
+      "http_server_request": {
+        "path_info": "/board",
+        "request_method": "GET",
+        "headers": {
+          "Host": "localhost:3000",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:134.0) Gecko/20100101 Firefox/134.0",
+          "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+          "Accept-Language": "en-US,en;q=0.5",
+          "Accept-Encoding": "gzip, deflate, br, zstd",
+          "Connection": "keep-alive",
+          "Cookie": "JSESSIONID=B90EECDFEC672A00A0880FBEC2242480",
+          "Upgrade-Insecure-Requests": "1",
+          "Sec-Fetch-Dest": "document",
+          "Sec-Fetch-Mode": "navigate",
+          "Sec-Fetch-Site": "none",
+          "Sec-Fetch-User": "?1",
+          "If-None-Match": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\"",
+          "Priority": "u=0, i"
+        },
+        "protocol": "HTTP/1.1"
+      },
+      "id": 1,
+      "thread_id": 0
+    },
+    {
+      "event": "call",
+      "id": 2,
+      "thread_id": 0,
+      "method_id": "getBoards",
+      "static": false,
+      "receiver": {
+        "class": "BoardController",
+        "value": "BoardController {\n  boardService: BoardService {\n    boardRepository: [Repository],\n    userRepository: [Repository]\n  }\n}",
+        "object_id": 9
+      },
+      "parameters": [
+        {
+          "class": "Number",
+          "value": "NaN",
+          "name": "page"
+        },
+        {
+          "class": "Number",
+          "value": "NaN",
+          "name": "size"
+        }
+      ],
+      "defined_class": "BoardController",
+      "path": "src\\board\\board.controller.ts",
+      "lineno": 18
+    },
+    {
+      "event": "call",
+      "id": 3,
+      "thread_id": 0,
+      "method_id": "getBoards",
+      "static": false,
+      "receiver": {
+        "class": "BoardService",
+        "value": "BoardService {\n  boardRepository: Repository {\n    manager: [EntityManager],\n    metadata: [EntityMetadata],\n    queryRunner: undefined\n  },\n  userRepository: Repository {\n    manager: [EntityManager],\n    metadata: [EntityMetadata],\n    queryRunner: undefined\n  }\n}",
+        "object_id": 4
+      },
+      "parameters": [
+        {
+          "class": "Number",
+          "value": "NaN",
+          "name": "page"
+        },
+        {
+          "class": "Number",
+          "value": "NaN",
+          "name": "size"
+        }
+      ],
+      "defined_class": "BoardService",
+      "path": "src\\board\\board.service.ts",
+      "lineno": 116
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 4,
+      "parent_id": 3,
+      "return_value": {
+        "class": "Promise<Array>",
+        "value": "Promise { [] }",
+        "object_id": 10
+      },
+      "elapsed": 0.008775800000876188
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 5,
+      "parent_id": 2,
+      "return_value": {
+        "class": "Promise<Array>",
+        "value": "Promise { [] }",
+        "object_id": 11
+      },
+      "elapsed": 0.009098300011828542
+    },
+    {
+      "event": "return",
+      "http_server_response": {
+        "status_code": 304,
+        "headers": {
+          "X-Powered-By": "Express",
+          "Etag": "W/\"2-l9Fw4VUO7kr8CvBlt4zaMCqXZ0w\""
+        }
+      },
+      "id": 6,
+      "thread_id": 0,
+      "parent_id": 1,
+      "elapsed": 0.01985459984280169
+    },
+    {
+      "event": "call",
+      "sql_query": {
+        "database_type": "sqlite",
+        "sql": "SELECT \"Board\".\"board_id\" AS \"Board_board_id\", \"Board\".\"title\" AS \"Board_title\", \"Board\".\"content\" AS \"Board_content\", \"Board\".\"created_at\" AS \"Board_created_at\", \"Board\".\"last_modified_at\" AS \"Board_last_modified_at\", \"Board\".\"user_id\" AS \"Board_user_id\", \"Board__user\".\"user_id\" AS \"Board__user_user_id\", \"Board__user\".\"name\" AS \"Board__user_name\", \"Board__user\".\"email\" AS \"Board__user_email\", \"Board__user\".\"password\" AS \"Board__user_password\" FROM \"boards\" \"Board\" LEFT JOIN \"users\" \"Board__user\" ON \"Board__user\".\"user_id\"=\"Board\".\"user_id\""
+      },
+      "id": 7,
+      "thread_id": 0
+    },
+    {
+      "event": "return",
+      "thread_id": 0,
+      "id": 8,
+      "parent_id": 7,
+      "elapsed": 0.0002193001564592123
+    }
+  ],
+  "version": "1.12",
+  "metadata": {
+    "client": {
+      "name": "appmap-node",
+      "version": "2.24.3",
+      "url": "https://github.com/getappmap/appmap-node"
+    },
+    "language": {
+      "name": "javascript",
+      "engine": "Node.js",
+      "version": "v20.16.0"
+    },
+    "app": "example",
+    "recorder": {
+      "type": "requests",
+      "name": "requests"
+    },
+    "name": "GET /board (304) — 2025-01-14T21:11:46.411Z"
+  },
+  "classMap": [
+    {
+      "name": "board",
+      "type": "package",
+      "children": [
+        {
+          "type": "class",
+          "name": "BoardController",
+          "children": [
+            {
+              "type": "function",
+              "name": "getBoards",
+              "static": false,
+              "location": "src\\board\\board.controller.ts:18"
+            }
+          ]
+        },
+        {
+          "type": "class",
+          "name": "BoardService",
+          "children": [
+            {
+              "type": "function",
+              "name": "getBoards",
+              "static": false,
+              "location": "src\\board\\board.service.ts:116"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "http",
+      "name": "HTTP server requests",
+      "children": [
+        {
+          "type": "route",
+          "name": "GET /board"
+        }
+      ]
+    },
+    {
+      "type": "database",
+      "name": "Database",
+      "children": [
+        {
+          "type": "query",
+          "name": "SELECT \"Board\".\"board_id\" AS \"Board_board_id\", \"Board\".\"title\" AS \"Board_title\", \"Board\".\"content\" AS \"Board_content\", \"Board\".\"created_at\" AS \"Board_created_at\", \"Board\".\"last_modified_at\" AS \"Board_last_modified_at\", \"Board\".\"user_id\" AS \"Board_user_id\", \"Board__user\".\"user_id\" AS \"Board__user_user_id\", \"Board__user\".\"name\" AS \"Board__user_name\", \"Board__user\".\"email\" AS \"Board__user_email\", \"Board__user\".\"password\" AS \"Board__user_password\" FROM \"boards\" \"Board\" LEFT JOIN \"users\" \"Board__user\" ON \"Board__user\".\"user_id\"=\"Board\".\"user_id\""
+        }
+      ]
+    }
+  ]
+}

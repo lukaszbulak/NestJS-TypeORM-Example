@@ -1,0 +1,52 @@
+[
+  {
+    "name": "board",
+    "type": "package",
+    "children": [
+      {
+        "type": "class",
+        "name": "BoardController",
+        "children": [
+          {
+            "type": "function",
+            "name": "getBoards",
+            "static": false,
+            "location": "src\\board\\board.controller.ts:18"
+          }
+        ]
+      },
+      {
+        "type": "class",
+        "name": "BoardService",
+        "children": [
+          {
+            "type": "function",
+            "name": "getBoards",
+            "static": false,
+            "location": "src\\board\\board.service.ts:123"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "type": "http",
+    "name": "HTTP server requests",
+    "children": [
+      {
+        "type": "route",
+        "name": "GET /board"
+      }
+    ]
+  },
+  {
+    "type": "database",
+    "name": "Database",
+    "children": [
+      {
+        "type": "query",
+        "name": "SELECT DISTINCT \"distinctAlias\".\"Board_board_id\" AS \"ids_Board_board_id\" FROM (SELECT \"Board\".\"board_id\" AS \"Board_board_id\", \"Board\".\"title\" AS \"Board_title\", \"Board\".\"content\" AS \"Board_content\", \"Board\".\"created_at\" AS \"Board_created_at\", \"Board\".\"last_modified_at\" AS \"Board_last_modified_at\", \"Board\".\"user_id\" AS \"Board_user_id\", \"Board__Board_user\".\"user_id\" AS \"Board__Board_user_user_id\", \"Board__Board_user\".\"name\" AS \"Board__Board_user_name\", \"Board__Board_user\".\"email\" AS \"Board__Board_user_email\", \"Board__Board_user\".\"password\" AS \"Board__Board_user_password\" FROM \"boards\" \"Board\" LEFT JOIN \"users\" \"Board__Board_user\" ON \"Board__Board_user\".\"user_id\"=\"Board\".\"user_id\") \"distinctAlias\" ORDER BY \"Board_board_id\" ASC LIMIT 10"
+      }
+    ]
+  }
+]

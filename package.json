@@ -30,7 +30,6 @@
     "@nestjs/typeorm": "^8",
     "@types/joi": "^17.2.3",
     "@types/jsonwebtoken": "^8.5.0",
-    "better-sqlite3": "^9.0.0",
     "class-transformer": "^0.3.2",
     "class-validator": "^0.14.0",
     "joi": "^17.3.0",

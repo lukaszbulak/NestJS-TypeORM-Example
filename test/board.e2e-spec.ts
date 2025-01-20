@@ -35,7 +35,7 @@ describe('BoardController (e2e)', () => {
       board.user = savedUser;
       await boardRepository.save(board);
     }
-    return userRepository.findOne(savedUser.getUser_id, {
+    return userRepository.findOne({where: {getUser_id: savedUser.getUser_id},
       relations: ['boards'],
     });
   };

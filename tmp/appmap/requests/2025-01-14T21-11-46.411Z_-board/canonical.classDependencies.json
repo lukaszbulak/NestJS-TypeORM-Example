@@ -1,0 +1,10 @@
+[
+  {
+    "caller": "GET /board",
+    "callee": "board/BoardController"
+  },
+  {
+    "caller": "board/BoardController",
+    "callee": "board/BoardService"
+  }
+]
