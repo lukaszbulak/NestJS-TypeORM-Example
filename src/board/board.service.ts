@@ -13,10 +13,17 @@ import { Board } from '../entities/board/board.entity';
 import { BoardUpdateDto } from './dtos/update-board.dto';
 import { BasicMessageDto } from '../common/dtos/basic-message.dto';
 
+import { InjectRepository } from '@nestjs/typeorm';
+
+import { User } from 'src/entities/user/user.entity';
+
+
 @Injectable()
 export class BoardService {
   constructor(
+    @InjectRepository(Board)
     private readonly boardRepository: BoardRepository,
+    @InjectRepository(User)
     private readonly userRepository: UserRepository,
   ) {}
 

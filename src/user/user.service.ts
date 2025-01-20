@@ -16,10 +16,11 @@ import {
   extractUserId,
   generateAccessToken,
 } from '../utils/auth/jwt-token-util';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UserService {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(@InjectRepository(User) private readonly userRepository: UserRepository) {}
 
   private userCreateDtoToEntity = (dto: UserCreateDto): User => {
     const user = new User();
