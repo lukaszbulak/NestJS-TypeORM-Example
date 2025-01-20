@@ -2,6 +2,8 @@ name: example
 language: javascript
 appmap_dir: tmp/appmap
 packages:
+  - path: node_modules/typeorm
+#  - path: node_modules/@nestjs
   - path: .
     exclude:
       - node_modules

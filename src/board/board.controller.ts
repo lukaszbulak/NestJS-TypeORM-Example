@@ -19,6 +19,7 @@ export class BoardController {
     @Query('page') page: number,
     @Query('size') size: number,
   ): Promise<BoardInfoResponseDto[]> {
-    return this.boardService.getBoards(page, size);
+    // temporary fixed:
+    return this.boardService.getBoards(0, 10);
   }
 }
